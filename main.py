@@ -8,6 +8,12 @@ from collections import Counter
 import seaborn as sns
 from konlpy.tag import Okt
 
+# 한글 폰트 설정
+font_path = "data/malgun.ttf"
+font_manager.fontManager.addfont(font_path)
+rc('font', family='Malgun Gothic')
+plt.rcParams['axes.unicode_minus'] = False
+
 st.set_page_config(
     page_title="K팝 데몬 헌터스 팬덤 형성 요인 분석",
     page_icon="🤖",
@@ -58,7 +64,7 @@ st.sidebar.header("옵션")
 max_words = st.sidebar.slider("워드클라우드 단어 개수", 10, 200, 50, 10)
 top_n = st.sidebar.slider("Top 키워드 개수", 5, 30, 15, 5)
 
-# ========== 1. 워드클라우드 ==========
+# 워드클라우드
 st.header("1. 워드클라우드")
 
 font_path = "data/malgun.ttf"
@@ -77,7 +83,7 @@ ax1.imshow(wc, interpolation="bilinear")
 ax1.axis("off")
 st.pyplot(fig1)
 
-# ========== 2. 시계열 분석 (Altair) ==========
+# 시계열 분석 (Altair)
 st.header("2. 일별 기사량 추이")
 
 min_date = df["date"].min()
@@ -104,7 +110,7 @@ chart = alt.Chart(daily_counts).mark_line(point=True).encode(
 
 st.altair_chart(chart, use_container_width=True)
 
-# ========== 3. Top 키워드 (Seaborn) ==========
+# 3. Top 키워드 (Seaborn)
 st.header("3. Top 키워드")
 
 # 불용어 제거 후 카운트
