@@ -8,12 +8,6 @@ from collections import Counter
 import seaborn as sns
 from konlpy.tag import Okt
 
-# 한글 폰트 설정
-font_path = "data/malgun.ttf"
-font_prop = fm.FontProperties(fname=font_path)
-plt.rcParams['font.family'] = font_prop.get_name()
-plt.rcParams['axes.unicode_minus'] = False
-
 st.set_page_config(
     page_title="K팝 데몬 헌터스 팬덤 형성 요인 분석",
     page_icon="🤖",
@@ -125,4 +119,5 @@ fig2, ax2 = plt.subplots(figsize=(10, 6))
 sns.barplot(data=df_top, x="빈도", y="키워드", palette="Blues_d", ax=ax2)
 ax2.set_title(f"Top {top_n} 키워드")
 st.pyplot(fig2)
+
 
