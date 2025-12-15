@@ -86,10 +86,6 @@ st.markdown("""
 **분석 목적:** 케이팝 데몬 헌터스 관련 기사에서 가장 많이 언급된 키워드를 파악.
 """)
 
-st.markdown("""
-워드클라우드를 통해 팬덤과 미디어에서 주로 다루는 주제와 관심사를 파악할 수 있습니다.
-""")
-
 # 시계열 분석 (Altair)
 st.header("2. 일별 기사량 추이")
 
@@ -118,11 +114,7 @@ chart = alt.Chart(daily_counts).mark_line(point=True).encode(
 st.altair_chart(chart, use_container_width=True)
 
 st.markdown("""
-**분석 목적:** 시간에 따른 기사량 변화를 통해 언제 버즈가 발생했는지 파악.
-""")
-
-st.markdown("""
-기사량 피크 시점을 분석하면 팬덤 형성에 영향을 준 핵심 이벤트를 추정할 수 있습니다.
+**분석 목적:** 시간에 따른 기사량 변화를 통해 언제 특정 이슈슈가 발생했는지 파악.
 """)
 
 # 3. Top 키워드 (Seaborn)
@@ -147,12 +139,7 @@ for label in ax2.get_yticklabels():
 st.pyplot(fig2)
 
 st.markdown("""
-**분석 목적:** 가장 많이 등장한 키워드를 정량적으로 순위화하여 핵심 담론을 파악합니다.
-""")
-
-st.markdown("""
-상위 키워드는 케이팝 데몬 헌터스가 어떤 맥락에서 주로 언급되는지를 보여줍니다.
-브랜드, 협업사, 콘텐츠 유형 등 팬덤 형성의 핵심 요인을 확인할 수 있습니다.
+**분석 목적:** 가장 많이 등장한 키워드를 측정하여 팬덤과의 연관성 파악.
 """)
 
 # 키워드 트렌드 (Plotly)
@@ -185,6 +172,7 @@ if selected_keywords:
     st.plotly_chart(fig3, use_container_width=True)
 else:
     st.write("키워드를 선택해주세요.")
+
 
 
 
