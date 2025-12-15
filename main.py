@@ -126,5 +126,35 @@ for label in ax2.get_yticklabels():
 
 st.pyplot(fig2)
 
+# 키워드 트렌드 (Plotly)
+st.header("4. 키워드 트렌드")
+
+# 각 기사별 명사 추출
+df["nouns"] = df["title"].apply(lambda x: re.findall(r"[가-하]{2,}", str(x))) + \
+              df["description"].apply(lambda x: re.findall(r"[가-하]{2,}", str(x)))
+
+# Top 10 키워드 선택 옵션
+top_keywords = [word for word, count in noun_counts[:10]]
+selected_keywords = st.multiselect("키워드 선택", top_keywords, default=top_keywords[:3])
+
+# 선택된 키워드별 일별 빈도 계산
+if selected_keywords:
+    trend_data = []
+    for date in df["date"].unique():
+        daily_df = df[df["date"] == date]
+        daily_nouns = sum(daily_df["nouns"].tolist(), [])
+        for keyword in selected_keywords:
+            count = daily_nouns.count(keyword)
+            trend_data.append({"date": date, "keyword": keyword, "count": count})
+    
+    df_trend = pd.DataFrame(trend_data)
+    df_trend["date"] = pd.to_datetime(df_trend["date"])
+    
+    # Plotly 라인차트
+    fig3 = px.line(df_trend, x="date", y="count", color="keyword",
+                   title="키워드별 시계열 트렌드", markers=True)
+    st.plotly_chart(fig3, use_container_width=True)
+else:
+    st.write("키워드를 선택해주세요.")
 
 
