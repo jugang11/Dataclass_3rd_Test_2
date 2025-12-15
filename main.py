@@ -107,17 +107,22 @@ st.altair_chart(chart, use_container_width=True)
 # 3. Top 키워드 (Seaborn)
 st.header("3. Top 키워드")
 
-# 불용어 제거 후 카운트
 filtered_nouns = [n for n in all_nouns if n not in stopwords and len(n) > 1]
 noun_counts = Counter(filtered_nouns).most_common(top_n)
 
-# 데이터프레임 변환
 df_top = pd.DataFrame(noun_counts, columns=["키워드", "빈도"])
 
-# Seaborn 바차트
 fig2, ax2 = plt.subplots(figsize=(10, 6))
 sns.barplot(data=df_top, x="빈도", y="키워드", palette="Blues_d", ax=ax2)
-ax2.set_title(f"Top {top_n} 키워드")
+
+# 폰트 직접 적용
+font_prop = fm.FontProperties(fname="data/malgun.ttf")
+ax2.set_title(f"Top {top_n} 키워드", fontproperties=font_prop)
+ax2.set_xlabel("빈도", fontproperties=font_prop)
+ax2.set_ylabel("키워드", fontproperties=font_prop)
+for label in ax2.get_yticklabels():
+    label.set_fontproperties(font_prop)
+
 st.pyplot(fig2)
 
 
