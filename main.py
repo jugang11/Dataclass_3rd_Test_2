@@ -78,6 +78,14 @@ ax1.imshow(wc, interpolation="bilinear")
 ax1.axis("off")
 st.pyplot(fig1)
 
+st.markdown("""
+**분석 목적:** 케이팝 데몬 헌터스 관련 기사에서 가장 많이 언급된 키워드를 파악.
+""")
+
+st.markdown("""
+워드클라우드를 통해 팬덤과 미디어에서 주로 다루는 주제와 관심사를 파악할 수 있습니다.
+""")
+
 # 시계열 분석 (Altair)
 st.header("2. 일별 기사량 추이")
 
@@ -104,6 +112,14 @@ chart = alt.Chart(daily_counts).mark_line(point=True).encode(
 ).interactive()
 
 st.altair_chart(chart, use_container_width=True)
+
+st.markdown("""
+**분석 목적:** 시간에 따른 기사량 변화를 통해 언제 버즈가 발생했는지 파악.
+""")
+
+st.markdown("""
+기사량 피크 시점을 분석하면 팬덤 형성에 영향을 준 핵심 이벤트를 추정할 수 있습니다.
+""")
 
 # 3. Top 키워드 (Seaborn)
 st.header("3. Top 키워드")
@@ -156,5 +172,6 @@ if selected_keywords:
     st.plotly_chart(fig3, use_container_width=True)
 else:
     st.write("키워드를 선택해주세요.")
+
 
 
