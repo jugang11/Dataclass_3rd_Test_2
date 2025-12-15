@@ -22,6 +22,10 @@ st.set_page_config(
 )
 
 st.title("K팝 데몬 헌터스 팬덤 형성 요인 분석")
+st.subheader("2025년 큰 이슈가 되었던 넷플릭스의 K팝 데몬 헌터스에 대한 데이터 분석")
+st.text("케데헌의 팬덤 형성 요인을 검색어 기반으로 분석 및 인사이트 도출")
+st.caption("작성자: C031231 주은강")
+
 
 # 수집한 데이터 불러오기
 @st.cache_data
@@ -142,6 +146,15 @@ for label in ax2.get_yticklabels():
 
 st.pyplot(fig2)
 
+st.markdown("""
+**분석 목적:** 가장 많이 등장한 키워드를 정량적으로 순위화하여 핵심 담론을 파악합니다.
+""")
+
+st.markdown("""
+상위 키워드는 케이팝 데몬 헌터스가 어떤 맥락에서 주로 언급되는지를 보여줍니다.
+브랜드, 협업사, 콘텐츠 유형 등 팬덤 형성의 핵심 요인을 확인할 수 있습니다.
+""")
+
 # 키워드 트렌드 (Plotly)
 st.header("4. 키워드 트렌드")
 
@@ -172,6 +185,7 @@ if selected_keywords:
     st.plotly_chart(fig3, use_container_width=True)
 else:
     st.write("키워드를 선택해주세요.")
+
 
 
 
