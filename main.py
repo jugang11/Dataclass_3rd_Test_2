@@ -3,6 +3,7 @@ import pandas as pd
 import re
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 import altair as alt
 from collections import Counter
 import seaborn as sns
@@ -124,5 +125,6 @@ for label in ax2.get_yticklabels():
     label.set_fontproperties(font_prop)
 
 st.pyplot(fig2)
+
 
 
