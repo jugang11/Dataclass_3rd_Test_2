@@ -10,8 +10,8 @@ from konlpy.tag import Okt
 
 # 한글 폰트 설정
 font_path = "data/malgun.ttf"
-font_manager.fontManager.addfont(font_path)
-rc('font', family='Malgun Gothic')
+font_prop = fm.FontProperties(fname=font_path)
+plt.rcParams['font.family'] = font_prop.get_name()
 plt.rcParams['axes.unicode_minus'] = False
 
 st.set_page_config(
@@ -125,3 +125,4 @@ fig2, ax2 = plt.subplots(figsize=(10, 6))
 sns.barplot(data=df_top, x="빈도", y="키워드", palette="Blues_d", ax=ax2)
 ax2.set_title(f"Top {top_n} 키워드")
 st.pyplot(fig2)
+
